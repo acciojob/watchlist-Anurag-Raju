@@ -15,6 +15,12 @@ public class MovieService {
     List<Movie> getMoviesByDirectorName(String name){
         return movieRepository.getMoviesByDirectorName(name);
     }
+    void deleteDirectorByName(String name){
+        movieRepository.deleteDirectorByName(name);
+    }
+    void deleteAllDirectors(){
+        movieRepository.deleteAllDirectors();
+    }
     void addMovie(Movie movie){
         movieRepository.addMovieToDatabase(movie);
     }

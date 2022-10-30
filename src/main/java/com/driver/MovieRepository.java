@@ -27,6 +27,15 @@ public class MovieRepository {
     List<Movie> getMoviesByDirectorName(String name){
         return moviesAndDirectors.get(name);
     }
+    void deleteDirectorByName(String name){
+         if(moviesAndDirectors.containsKey(name)){
+             movies.remove(moviesAndDirectors.get(name));
+             directors.remove(name);
+         }
+    }
+    void deleteAllDirectors(){
+        directors=new HashMap<>();
+    }
     void addMovieToDatabase(Movie movie){
         movies.put(movie.getName(),movie);
     }
