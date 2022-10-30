@@ -9,6 +9,12 @@ import java.util.List;
 public class MovieService {
     @Autowired
     MovieRepository movieRepository;
+    void addMovieDirectorPair(String movieName,String directorName){
+        movieRepository.addMovieDirectorPair(movieName,directorName);
+    }
+    List<Movie> getMoviesByDirectorName(String name){
+        return movieRepository.getMoviesByDirectorName(name);
+    }
     void addMovie(Movie movie){
         movieRepository.addMovieToDatabase(movie);
     }

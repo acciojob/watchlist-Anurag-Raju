@@ -31,7 +31,11 @@ public class MovieController {
 //    Pass movie name and director name as request parameters
 //    Return success message wrapped in a ResponseEntity object
 //    Controller Name - addMovieDirectorPair
-
+    @PutMapping("/movies/add-movie-director-pair")
+    public ResponseEntity addMovieDirectorPair(@RequestParam String movieName,@RequestParam String directorName){
+       movieService.addMovieDirectorPair(movieName,directorName);
+       return new ResponseEntity<>("Successfully paired",HttpStatus.CREATED);
+    }
 //    Get Movie by movie name: GET /movies/get-movie-by-name/{name}
 //    Pass movie name as path parameter
 //    Return Movie object wrapped in a ResponseEntity object
@@ -52,7 +56,10 @@ public class MovieController {
 //    Pass director name as path parameter
 //    Return List of movies name(List()) wrapped in a ResponseEntity object
 //    Controller Name - getMoviesByDirectorName
-
+      @GetMapping("/movies/get-movies-by-director-name/{director}")
+       public ResponseEntity<List<Movie>> getMoviesByDirectorName(@PathVariable String name){
+       return new ResponseEntity<>(movieService.getMoviesByDirectorName(name),HttpStatus.ACCEPTED);
+      }
 //    Get List of all movies added: GET /movies/get-all-movies
 //    No params or body required
 //    Return List of movies name(List()) wrapped in a ResponseEntity object

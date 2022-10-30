@@ -11,7 +11,22 @@ import java.util.List;
 public class MovieRepository {
      HashMap<String,Movie> movies=new HashMap<>();
      HashMap<String,Director> directors=new HashMap<>();
-     HashMap<Movie,Director> moviesAndDirectors=new HashMap<>();
+
+     HashMap<String,List<Movie>> moviesAndDirectors=new HashMap<>();
+     void addMovieDirectorPair(String movieName,String directorName){
+         if(moviesAndDirectors.containsKey(directorName)){
+             List<Movie> existingMovies=moviesAndDirectors.get(directorName);
+             existingMovies.add(movies.get(movieName));
+             moviesAndDirectors.put(directorName,existingMovies);
+         }else{
+             List<Movie> newMovies=new ArrayList<>();
+             newMovies.add(movies.get(movieName));
+             moviesAndDirectors.put(directorName,newMovies);
+         }
+     }
+    List<Movie> getMoviesByDirectorName(String name){
+        return moviesAndDirectors.get(name);
+    }
     void addMovieToDatabase(Movie movie){
         movies.put(movie.getName(),movie);
     }
