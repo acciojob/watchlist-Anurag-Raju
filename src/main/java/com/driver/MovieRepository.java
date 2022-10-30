@@ -11,7 +11,7 @@ public class MovieRepository {
      HashMap<String,Director> directors=new HashMap<>();
 
      HashMap<String,List<Movie>> moviesAndDirectors=new HashMap<>();
-     void addMovieDirectorPair(String movieName,String directorName){
+     public void addMovieDirectorPair(String movieName,String directorName){
          if(moviesAndDirectors.containsKey(directorName)){
              List<Movie> existingMovies=moviesAndDirectors.get(directorName);
              existingMovies.add(movies.get(movieName));
@@ -22,17 +22,17 @@ public class MovieRepository {
              moviesAndDirectors.put(directorName,newMovies);
          }
      }
-    List<Movie> getMoviesByDirectorName(String name){
+    public List<Movie> getMoviesByDirectorName(String name){
         return moviesAndDirectors.get(name);
     }
-    void deleteDirectorByName(String name){
+    public void deleteDirectorByName(String name){
          for(Movie movie:moviesAndDirectors.get(name)){
              movies.remove(movie);
          }
              directors.remove(name);
              moviesAndDirectors.remove(name);
     }
-    void deleteAllDirectors(){
+    public void deleteAllDirectors(){
         for(String m:moviesAndDirectors.keySet()){
             for(Movie movie:moviesAndDirectors.get(m)){
                 movies.remove(movie);
@@ -41,21 +41,21 @@ public class MovieRepository {
         directors.clear();
         moviesAndDirectors.clear();
     }
-    void addMovieToDatabase(Movie movie){
+    public void addMovieToDatabase(Movie movie){
         movies.put(movie.getName(),movie);
     }
 
-    void addDirectorToDatabase(Director director){
+    public void addDirectorToDatabase(Director director){
         directors.put(director.getName(),director);
     }
 
-    Movie getMovieByName(String name){
+    public Movie getMovieByName(String name){
         return movies.get(name);
     }
-    Director getDirectorByName(String name){
+    public Director getDirectorByName(String name){
         return directors.get(name);
     }
-    List<Movie> findAllMovies(){
+    public List<Movie> findAllMovies(){
         List<Movie> allMovies=new ArrayList<>();
         for(Movie movie:movies.values()){
             allMovies.add(movie);
