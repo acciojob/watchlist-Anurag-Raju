@@ -33,13 +33,13 @@ public class MovieRepository {
              moviesAndDirectors.remove(name);
     }
     void deleteAllDirectors(){
-        directors.clear();
-        moviesAndDirectors.clear();
         for(String m:moviesAndDirectors.keySet()){
             for(Movie movie:moviesAndDirectors.get(m)){
                 movies.remove(movie);
             }
         }
+        directors.clear();
+        moviesAndDirectors.clear();
     }
     void addMovieToDatabase(Movie movie){
         movies.put(movie.getName(),movie);
