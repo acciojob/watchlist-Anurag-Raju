@@ -1,7 +1,5 @@
 package com.driver;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -28,13 +26,20 @@ public class MovieRepository {
         return moviesAndDirectors.get(name);
     }
     void deleteDirectorByName(String name){
-         if(moviesAndDirectors.containsKey(name)){
-             movies.remove(moviesAndDirectors.get(name));
-             directors.remove(name);
+         for(Movie movie:moviesAndDirectors.get(name)){
+             movies.remove(movie);
          }
+             directors.remove(name);
+             moviesAndDirectors.remove(name);
     }
     void deleteAllDirectors(){
-        directors=new HashMap<>();
+        directors.clear();
+        moviesAndDirectors.clear();
+        for(String m:moviesAndDirectors.keySet()){
+            for(Movie movie:moviesAndDirectors.get(m)){
+                movies.remove(movie);
+            }
+        }
     }
     void addMovieToDatabase(Movie movie){
         movies.put(movie.getName(),movie);
