@@ -52,12 +52,12 @@ public class MovieController {
       @DeleteMapping("/delete-director-by-name")
       public ResponseEntity deleteDirectorByName(@RequestParam String name){
         movieService.deleteDirectorByName(name);
-        return new ResponseEntity("Successfully deleted the movies by director name",HttpStatus.ACCEPTED);
+        return new ResponseEntity("Success",HttpStatus.ACCEPTED);
       }
 
       @DeleteMapping("/delete-all-directors")
          public ResponseEntity deleteAllDirectors(){
           movieService.deleteAllDirectors();
-         return new ResponseEntity("Successfully all the directors and there movies",HttpStatus.ACCEPTED);
+         return new ResponseEntity("Success",HttpStatus.ACCEPTED);
       }
 }

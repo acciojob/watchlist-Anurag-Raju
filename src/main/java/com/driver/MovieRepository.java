@@ -11,36 +11,6 @@ public class MovieRepository {
      HashMap<String,Director> directors=new HashMap<>();
 
      HashMap<String,List<Movie>> moviesAndDirectors=new HashMap<>();
-     public void addMovieDirectorPair(String movieName,String directorName){
-         if(moviesAndDirectors.containsKey(directorName)){
-             List<Movie> existingMovies=moviesAndDirectors.get(directorName);
-             existingMovies.add(movies.get(movieName));
-             moviesAndDirectors.put(directorName,existingMovies);
-         }else{
-             List<Movie> newMovies=new ArrayList<>();
-             newMovies.add(movies.get(movieName));
-             moviesAndDirectors.put(directorName,newMovies);
-         }
-     }
-    public List<Movie> getMoviesByDirectorName(String name){
-        return moviesAndDirectors.get(name);
-    }
-    public void deleteDirectorByName(String name){
-         for(Movie movie:moviesAndDirectors.get(name)){
-             movies.remove(movie);
-         }
-             directors.remove(name);
-             moviesAndDirectors.remove(name);
-    }
-    public void deleteAllDirectors(){
-        for(String m:moviesAndDirectors.keySet()){
-            for(Movie movie:moviesAndDirectors.get(m)){
-                movies.remove(movie);
-            }
-        }
-        directors.clear();
-        moviesAndDirectors.clear();
-    }
     public void addMovieToDatabase(Movie movie){
         movies.put(movie.getName(),movie);
     }
@@ -61,5 +31,35 @@ public class MovieRepository {
             allMovies.add(movie);
         }
         return allMovies;
+    }
+    public void addMovieDirectorPair(String movieName,String directorName){
+        if(moviesAndDirectors.containsKey(directorName)){
+            List<Movie> existingMovies=moviesAndDirectors.get(directorName);
+            existingMovies.add(movies.get(movieName));
+            moviesAndDirectors.put(directorName,existingMovies);
+        }else{
+            List<Movie> newMovies=new ArrayList<>();
+            newMovies.add(movies.get(movieName));
+            moviesAndDirectors.put(directorName,newMovies);
+        }
+    }
+    public List<Movie> getMoviesByDirectorName(String name){
+        return moviesAndDirectors.get(name);
+    }
+    public void deleteDirectorByName(String name){
+        for(Movie movie:moviesAndDirectors.get(name)){
+            movies.remove(movie);
+        }
+        directors.remove(name);
+        moviesAndDirectors.remove(name);
+    }
+    public void deleteAllDirectors(){
+        for(String m:moviesAndDirectors.keySet()){
+            for(Movie movie:moviesAndDirectors.get(m)){
+                movies.remove(movie);
+            }
+        }
+        directors.clear();
+        moviesAndDirectors.clear();
     }
 }
