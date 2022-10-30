@@ -22,16 +22,6 @@ public class MovieRepository {
     public Movie getMovieByName(String name){
         return movies.get(name);
     }
-    public Director getDirectorByName(String name){
-        return directors.get(name);
-    }
-    public List<Movie> findAllMovies(){
-        List<Movie> allMovies=new ArrayList<>();
-        for(Movie movie:movies.values()){
-            allMovies.add(movie);
-        }
-        return allMovies;
-    }
     public void addMovieDirectorPair(String movieName,String directorName){
         if(moviesAndDirectors.containsKey(directorName)){
             List<Movie> existingMovies=moviesAndDirectors.get(directorName);
@@ -43,9 +33,22 @@ public class MovieRepository {
             moviesAndDirectors.put(directorName,newMovies);
         }
     }
+    public Director getDirectorByName(String name){
+        return directors.get(name);
+    }
     public List<Movie> getMoviesByDirectorName(String name){
         return moviesAndDirectors.get(name);
     }
+
+    public List<Movie> findAllMovies(){
+        List<Movie> allMovies=new ArrayList<>();
+        for(Movie movie:movies.values()){
+            allMovies.add(movie);
+        }
+        return allMovies;
+    }
+
+
     public void deleteDirectorByName(String name){
         for(Movie movie:moviesAndDirectors.get(name)){
             movies.remove(movie);
