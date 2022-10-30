@@ -1,0 +1,27 @@
+package com.driver;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class MovieService {
+    @Autowired
+    MovieRepository movieRepository;
+    void addMovie(Movie movie){
+        movieRepository.addMovieToDatabase(movie);
+    }
+    void addDirector(Director director){
+        movieRepository.addDirectorToDatabase(director);
+    }
+    Movie getMovieByName(String name){
+       return movieRepository.getMovieByName(name);
+    }
+    Director getDirectorByName(String name){
+       return movieRepository.getDirectorByName(name);
+    }
+    List<Movie> findAllMovies(){
+       return movieRepository.findAllMovies();
+    }
+}
